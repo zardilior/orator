@@ -435,6 +435,15 @@ class QueryBuilder(object):
 
         return self
 
+    def starts_with(self, column, search):
+        return self.where(column, 'LIKE', '{}%'.format(search))
+
+    def like(self, column, search):
+        return self.where(column, 'LIKE', '%{}%'.format(search))
+
+    def ends_with(self, column, search):
+        return self.where(column, 'LIKE', '{}%'.format(search))
+
     def or_where_raw(self, sql, bindings=None):
         return self.where_raw(sql, bindings, "or")
 
